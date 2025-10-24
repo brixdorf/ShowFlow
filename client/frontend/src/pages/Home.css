@@ -1,0 +1,155 @@
+.home {
+  min-height: calc(100vh - 80px);
+  padding: 2rem;
+  background: #ffffff;
+}
+
+.home-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.home-title {
+  font-size: 3rem;
+  color: #000000;
+  margin-bottom: 1rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.home-subtitle {
+  font-size: 1.2rem;
+  color: #666666;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.search-container {
+  margin: 0 auto 2rem;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+}
+
+.home-examples {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+
+.home-examples p {
+  color: #999999;
+  font-size: 0.95rem;
+}
+
+.home-examples a {
+  color: #000000;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.home-examples a:hover {
+  color: #10b981;
+}
+
+/* Top Series Section */
+.top-series-section {
+  margin-top: 4rem;
+  text-align: left;
+}
+
+.top-series-section h2 {
+  font-size: 2rem;
+  color: #000000;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.series-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 2rem;
+}
+
+.series-card {
+  text-decoration: none;
+  color: #000000;
+  display: block;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.series-card:hover {
+  transform: translateY(-5px);
+}
+
+.series-rank {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background: #000000;
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  z-index: 10;
+}
+
+.series-poster {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+}
+
+.series-poster-placeholder {
+  width: 100%;
+  aspect-ratio: 2/3;
+  background: #f0f0f0;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999999;
+}
+
+.series-info {
+  margin-top: 0.75rem;
+}
+
+.series-info h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+
+.series-info p {
+  font-size: 0.85rem;
+  color: #666666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .home-title {
+    font-size: 2rem;
+  }
+
+  .home-subtitle {
+    font-size: 1rem;
+  }
+
+  .series-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1.5rem;
+  }
+}
