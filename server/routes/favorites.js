@@ -4,9 +4,6 @@ const auth = require("../middleware/auth");
 
 const router = express.Router();
 
-// @route   GET api/favorites
-// @desc    Get user's favorite series
-// @access  Private
 router.get("/", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("favorites");
@@ -17,16 +14,12 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
-// @route   POST api/favorites
-// @desc    Add series to favorites
-// @access  Private
 router.post("/", auth, async (req, res) => {
   try {
     const { seriesId, name, poster_path } = req.body;
 
     const user = await User.findById(req.user.id);
 
-    // Check if already favorited
     const alreadyFavorited = user.favorites.some(
       (fav) => fav.seriesId === seriesId
     );
@@ -45,9 +38,6 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
-// @route   DELETE api/favorites/:seriesId
-// @desc    Remove series from favorites
-// @access  Private
 router.delete("/:seriesId", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
@@ -65,17 +55,14 @@ router.delete("/:seriesId", auth, async (req, res) => {
   }
 });
 
-// @route   GET api/favorites/check/:seriesId
-// @desc    Check if series is favorited
-// @access  Private
 router.get("/check/:seriesId", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
-    
+
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    
+
     const isFavorited = user.favorites.some(
       (fav) => fav.seriesId === parseInt(req.params.seriesId)
     );

@@ -12,7 +12,7 @@ const Home = () => {
     const fetchTopSeries = async () => {
       try {
         const { data } = await API.get("/series/trending");
-        setTopSeries(data.results.slice(0, 12)); // Show top 12
+        setTopSeries(data.results.slice(0, 12));
       } catch (error) {
         console.error("Error fetching top series:", error);
       } finally {
@@ -26,17 +26,19 @@ const Home = () => {
   return (
     <div className="home">
       <div className="home-content">
-        <h1 className="home-title">Visualize TV Series Ratings by Episode</h1>
+        <h1 className="home-title">
+          Visualize Web and TV Series Ratings by Episode
+        </h1>
         <p className="home-subtitle">
-          Discover the best and worst episodes of your favorite TV shows through 
-          interactive rating visualizations. Find hidden gems and avoid the duds!
+          Discover the best and worst episodes of your favorite shows through
+          interactive rating visualizations. Find hidden gems and avoid the
+          duds!
         </p>
 
         <div className="search-container">
           <SearchBar />
         </div>
 
-        {/* Top Series Section */}
         <div className="top-series-section">
           <h2>Top Streaming TV Series</h2>
           {loading ? (
@@ -44,9 +46,9 @@ const Home = () => {
           ) : (
             <div className="series-grid">
               {topSeries.map((series, index) => (
-                <Link 
-                  to={`/series/${series.id}`} 
-                  key={series.id} 
+                <Link
+                  to={`/series/${series.id}`}
+                  key={series.id}
                   className="series-card"
                 >
                   <div className="series-rank">{index + 1}</div>
@@ -61,7 +63,7 @@ const Home = () => {
                   )}
                   <div className="series-info">
                     <h3>{series.name}</h3>
-                    <p>{series.first_air_date?.split('-')[0]} - now</p>
+                    <p>{series.first_air_date?.split("-")[0]} - now</p>
                   </div>
                 </Link>
               ))}

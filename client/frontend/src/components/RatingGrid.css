@@ -160,7 +160,6 @@
   z-index: 10;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .rating-grid-header {
     flex-direction: column;

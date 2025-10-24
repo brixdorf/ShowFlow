@@ -38,7 +38,7 @@ const SeriesDetail = () => {
     const fetchRelatedShows = async () => {
       try {
         const { data } = await API.get(`/series/${id}/recommendations`);
-        setRelatedShows(data.results.slice(0, 6)); // Show top 6
+        setRelatedShows(data.results.slice(0, 6));
       } catch (err) {
         console.error("Error fetching related shows:", err);
       }
@@ -120,7 +120,6 @@ const SeriesDetail = () => {
 
   return (
     <div className="series-detail-page">
-      {/* Banner Image */}
       {series.backdrop_path && (
         <div
           className="series-banner"
@@ -150,7 +149,9 @@ const SeriesDetail = () => {
         ) : (
           <div className="action-buttons">
             <div className="login-prompt">
-              <Link to="/login" className="login-link">Login to add to favorites</Link>
+              <Link to="/login" className="login-link">
+                Login to add to favorites
+              </Link>
             </div>
           </div>
         )}
@@ -163,7 +164,6 @@ const SeriesDetail = () => {
           </div>
         )}
 
-        {/* Series Description */}
         {series.overview && (
           <div className="series-description">
             <h2>Overview</h2>
@@ -171,15 +171,14 @@ const SeriesDetail = () => {
           </div>
         )}
 
-        {/* Related Shows */}
         {relatedShows.length > 0 && (
           <div className="related-shows">
             <h2>Related shows</h2>
             <div className="related-shows-grid">
               {relatedShows.map((show) => (
-                <Link 
-                  to={`/series/${show.id}`} 
-                  key={show.id} 
+                <Link
+                  to={`/series/${show.id}`}
+                  key={show.id}
                   className="related-show-card"
                 >
                   {show.poster_path ? (
@@ -189,7 +188,9 @@ const SeriesDetail = () => {
                       className="related-show-poster"
                     />
                   ) : (
-                    <div className="related-show-poster-placeholder">No Image</div>
+                    <div className="related-show-poster-placeholder">
+                      No Image
+                    </div>
                   )}
                   <h3>{show.name}</h3>
                 </Link>

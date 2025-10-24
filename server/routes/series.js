@@ -5,33 +5,29 @@ const router = express.Router();
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 
-// @route   GET api/series/trending
-// @desc    Get trending TV series
-// @access  Public
 router.get("/trending", async (req, res) => {
   try {
     console.log("Fetching trending series");
-    
+
     const response = await axios.get(`${TMDB_BASE_URL}/trending/tv/week`, {
       params: {
         api_key: TMDB_API_KEY,
       },
     });
 
-    console.log(`Trending series fetched: ${response.data.results.length} results`);
+    console.log(
+      `Trending series fetched: ${response.data.results.length} results`
+    );
     res.json({ results: response.data.results });
   } catch (error) {
     console.error("Trending series error:", error.message);
-    res.status(500).json({ 
-      message: "Error fetching trending series", 
-      error: error.message 
+    res.status(500).json({
+      message: "Error fetching trending series",
+      error: error.message,
     });
   }
 });
 
-// @route   GET api/series/search
-// @desc    Search for TV series
-// @access  Public
 router.get("/search", async (req, res) => {
   try {
     const { query } = req.query;
@@ -42,7 +38,7 @@ router.get("/search", async (req, res) => {
 
     console.log(`Searching for: ${query}`);
     console.log(`TMDB API Key present: ${!!TMDB_API_KEY}`);
-    
+
     const response = await axios.get(`${TMDB_BASE_URL}/search/tv`, {
       params: {
         api_key: TMDB_API_KEY,
@@ -56,22 +52,21 @@ router.get("/search", async (req, res) => {
   } catch (error) {
     console.error("Search error:", error.message);
     console.error("Error code:", error.code);
-    res.status(500).json({ 
-      message: "Error searching for series", 
+    res.status(500).json({
+      message: "Error searching for series",
       error: error.message,
-      hint: error.code === 'ENOTFOUND' ? 'Cannot reach TMDB API. Check your internet connection or proxy settings.' : undefined
+      hint:
+        error.code === "ENOTFOUND"
+          ? "Cannot reach TMDB API. Check your internet connection or proxy settings."
+          : undefined,
     });
   }
 });
 
-// @route   GET api/series/:id
-// @desc    Get TV series details with all seasons and episodes
-// @access  Public
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Get series details
     const seriesResponse = await axios.get(`${TMDB_BASE_URL}/tv/${id}`, {
       params: {
         api_key: TMDB_API_KEY,
@@ -81,9 +76,8 @@ router.get("/:id", async (req, res) => {
     const seriesData = seriesResponse.data;
     const seasons = [];
 
-    // Fetch all seasons with episodes
     for (const season of seriesData.seasons) {
-      if (season.season_number === 0) continue; // Skip specials
+      if (season.season_number === 0) continue;
 
       try {
         const seasonResponse = await axios.get(
@@ -130,27 +124,34 @@ router.get("/:id", async (req, res) => {
     });
   } catch (error) {
     console.error("Series detail error:", error.message);
-    res.status(500).json({ message: "Error fetching series details", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Error fetching series details", error: error.message });
   }
 });
 
-// @route   GET api/series/:id/recommendations
-// @desc    Get recommended TV series based on a series
-// @access  Public
 router.get("/:id/recommendations", async (req, res) => {
   try {
     const { id } = req.params;
 
-    const response = await axios.get(`${TMDB_BASE_URL}/tv/${id}/recommendations`, {
-      params: {
-        api_key: TMDB_API_KEY,
-      },
-    });
+    const response = await axios.get(
+      `${TMDB_BASE_URL}/tv/${id}/recommendations`,
+      {
+        params: {
+          api_key: TMDB_API_KEY,
+        },
+      }
+    );
 
     res.json({ results: response.data.results });
   } catch (error) {
     console.error("Recommendations error:", error.message);
-    res.status(500).json({ message: "Error fetching recommendations", error: error.message });
+    res
+      .status(500)
+      .json({
+        message: "Error fetching recommendations",
+        error: error.message,
+      });
   }
 });
 

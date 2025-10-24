@@ -12,16 +12,12 @@ package-lock.json
 server/.env
 client/frontend/.env
 
-# Personal notes and guides
-DEPLOYMENT.md
-
 # OS files
 .DS_Store
 Thumbs.db
 
 # IDE
 .vscode/
-.idea/
 *.swp
 *.swo
 *~

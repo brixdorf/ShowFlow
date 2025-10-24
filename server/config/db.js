@@ -6,8 +6,9 @@ const connectDB = async () => {
     console.log("MongoDB Connected...");
   } catch (err) {
     console.error("MongoDB connection error:", err.message);
-    console.log("Server will continue without database (auth features disabled)");
-    // Don't exit - allow server to run for TMDB API features
+    console.log(
+      "Server will continue without database (auth features disabled)"
+    );
   }
 };
 

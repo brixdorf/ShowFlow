@@ -20,10 +20,8 @@ const SearchBar = () => {
     setLoading(true);
     setError("");
     try {
-      const { data } = await API.get(
-        `/series/search?query=${searchQuery}`
-      );
-      setResults(data.results.slice(0, 8)); // Show top 8 results
+      const { data } = await API.get(`/series/search?query=${searchQuery}`);
+      setResults(data.results.slice(0, 8));
     } catch (error) {
       console.error("Search error:", error);
       setResults([]);

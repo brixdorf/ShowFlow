@@ -9,7 +9,6 @@ export const AuthProvider = ({ children }) => {
   const [favoritesCount, setFavoritesCount] = useState(0);
 
   useEffect(() => {
-    // Check if user is logged in on mount
     const token = localStorage.getItem("token");
     if (token) {
       checkAuth(token);
@@ -19,7 +18,6 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    // Fetch favorites count when user is logged in
     const fetchFavoritesCount = async () => {
       if (user) {
         try {
@@ -71,11 +69,21 @@ export const AuthProvider = ({ children }) => {
   };
 
   const updateFavoritesCount = (delta) => {
-    setFavoritesCount(prev => prev + delta);
+    setFavoritesCount((prev) => prev + delta);
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, favoritesCount, updateFavoritesCount, login, register, logout }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        favoritesCount,
+        updateFavoritesCount,
+        login,
+        register,
+        logout,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

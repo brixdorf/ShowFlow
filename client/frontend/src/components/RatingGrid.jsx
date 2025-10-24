@@ -5,13 +5,13 @@ const RatingGrid = ({ series, seasons }) => {
   const [posterError, setPosterError] = React.useState(false);
 
   const getRatingColor = (rating) => {
-    if (rating >= 9) return "#10b981"; // Green
-    if (rating >= 8) return "#22c55e"; // Light green
-    if (rating >= 7) return "#84cc16"; // Yellow-green
-    if (rating >= 6) return "#eab308"; // Yellow
-    if (rating >= 5) return "#f59e0b"; // Orange
-    if (rating >= 4) return "#f97316"; // Dark orange
-    return "#ef4444"; // Red
+    if (rating >= 9) return "#10b981";
+    if (rating >= 8) return "#22c55e";
+    if (rating >= 7) return "#84cc16";
+    if (rating >= 6) return "#eab308";
+    if (rating >= 5) return "#f59e0b";
+    if (rating >= 4) return "#f97316";
+    return "#ef4444";
   };
 
   const getRatingLabel = (rating) => {
@@ -24,7 +24,6 @@ const RatingGrid = ({ series, seasons }) => {
     return "Bad";
   };
 
-  // Find max episodes across all seasons
   const maxEpisodes = Math.max(...seasons.map((s) => s.episodes?.length || 0));
 
   return (

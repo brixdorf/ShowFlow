@@ -113,7 +113,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .remove-btn:hover {
@@ -121,7 +121,6 @@
   color: white;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .favorites-container h1 {
     font-size: 2rem;
