@@ -42,7 +42,7 @@ const Home = () => {
         <div className="top-series-section">
           <h2>Top Streaming TV Series</h2>
           {loading ? (
-            <p>Loading...</p>
+            <p>If this takes a little time, please wait — Render puts the backend to sleep when it's inactive.</p>
           ) : (
             <div className="series-grid">
               {topSeries.map((series, index) => (
